@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/api")
+@RequestMapping(value="/api/city")
 @CrossOrigin(origins="http://localhost:4200")
 public class MainController {
 
@@ -18,29 +18,29 @@ public class MainController {
         this.cityRepos = cityRepos;
     }
 
-    @PostMapping("/save-city")
+    @PostMapping
     private void createByArgs(@RequestBody City city){
         cityRepos.save(city);
     }
 
-    @PostMapping("update-city/{city_id}")
-    private void change(@PathVariable("city_id") String id,
+    @PostMapping("/{id}")
+    private void change(@PathVariable("id") String id,
                         @RequestBody City city){
         city.setId(id);
         cityRepos.save(city);
     }
 
-    @DeleteMapping("delete-city/{id}")
+    @DeleteMapping("/{id}")
     private void deleteCity(@PathVariable("id") String id){
         cityRepos.deleteById(id);
     }
 
-    @GetMapping("city-list")
+    @GetMapping
     private List<City> allCities(){
         return cityRepos.findAll();
     }
 
-    @GetMapping("/city/{id}")
+    @GetMapping("/{id}")
     public List<City> cityByID(@PathVariable("id") String id){
        return  (List<City>) cityRepos.findAllById(Collections.singleton(id));
     }
