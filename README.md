@@ -13,7 +13,7 @@ First you need to create `resources/application.properties`
  
 
 # Features
- - I used cloud mongoDB Atlas
+ - MongoDB Atlas
  - lombok
  - Java 1.8
 
